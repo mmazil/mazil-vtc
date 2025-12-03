@@ -48,9 +48,8 @@
         "@type": "LocalBusiness",
         "name": "Mohammed M. — Private Driver — like your personal Uber for the dayriver in Paris — Your Personal Driver for the Day",
         "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600",
-        "@id": "https://yourwebsite.com/",
-        "url": "https://yourwebsite.com/",
-        "telephone": "+33757445677",
+        "@id": "https://yourparisdriver.com/",
+        "url": "https://yourparisdriver.com/",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Paris",
@@ -99,14 +98,8 @@
         </div>
         <div class="flex items-center gap-4 text-sm">
           <a
-            class="flex items-center gap-2 hover:underline"
-            href="tel:+33757445677"
-          >
-            <span>+33 7 57 44 56 77</span></a
-          >
-          <a
             class="bg-emerald-500 hover:bg-emerald-600 px-3 py-2 rounded-full text-white text-sm flex items-center gap-2"
-            href="https://wa.me/33757445677"
+            id="whatsappBtn"
             target="_blank"
             rel="noopener"
             >Chat on WhatsApp</a
@@ -254,14 +247,14 @@
             class="p-6 bg-white rounded-2xl shadow hover:shadow-xl hover:scale-105 transition transform"
           >
             <img
-              src="assets/sacre_coeur.jpg"
-              alt="Montmartre & Sacré-Cœur"
+              src="assets/disnep.jpg"
+              alt="Disneyland Paris"
               class="rounded-xl w-full h-40 object-fill mb-3"
             />
-            <h4 class="font-semibold text-lg">Montmartre & Sacré-Cœur</h4>
+            <h4 class="font-semibold text-lg">Disneyland Paris</h4>
             <p class="text-sm text-slate-600 mt-1">
-              A scenic hilltop village with panoramic views — ideal for half-day
-              cultural visits.
+              Europe’s top theme park destination for thrilling rides,
+              fairy-tale worlds, and unforgettable memories.
             </p>
           </article>
 
@@ -498,8 +491,7 @@
       </p>
 
       <form
-        action="https://formspree.io/f/movzqgko"
-        method="POST"
+        id="whatsappForm"
         class="grid grid-cols-1 gap-4 bg-white p-6 rounded-2xl shadow"
       >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -558,27 +550,13 @@
           class="border p-3 rounded"
         ></textarea>
 
-        <div class="flex items-center gap-3">
-          <input id="consent" name="consent" type="checkbox" required />
-          <label for="consent" class="text-sm text-slate-600"
-            >I agree to be contacted about my request.</label
-          >
-        </div>
-
         <div class="flex gap-3">
           <button
             type="submit"
-            class="bg-amber-400 hover:bg-amber-500 text-slate-900 px-5 py-3 rounded-lg font-semibold"
-          >
-            Request Quote
-          </button>
-          <a
-            href="https://wa.me/33757445677"
-            target="_blank"
-            rel="noopener"
             class="inline-flex items-center gap-2 border border-slate-300 px-4 py-3 rounded-lg hover:bg-slate-100"
-            >Message on WhatsApp</a
           >
+            Send via WhatsApp
+          </button>
         </div>
       </form>
     </section>
@@ -611,6 +589,55 @@
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      document
+        .getElementById("whatsappForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const form = e.target;
+
+          const message = `
+            New Booking Request
+
+            Name: ${form.name.value}
+            Email: ${form.email.value}
+            Phone: ${form.phone.value}
+            Passengers: ${form.passengers.value}
+            Flight Number: ${form.flightNumber.value}
+            Hotel: ${form.hotel.value}
+
+            Details:
+            ${form.details.value}
+                `.trim();
+
+          const whatsappNumber = "33757445677"; // no + sign
+          const url =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+          window.open(url, "_blank");
+        });
+
+      (function () {
+        // Build number in parts to keep it out of the markup
+        const part1 = "33";
+        const part2 = "757";
+        const part3 = "445";
+        const part4 = "677";
+
+        const number = part1 + part2 + part3 + part4;
+
+        const message = "Hello! I would like to inquire about your services.";
+        const url = `https://wa.me/${number}?text=${encodeURIComponent(
+          message
+        )}`;
+
+        const btn = document.getElementById("whatsappBtn");
+        btn.href = url;
+      })();
     </script>
   </body>
 </html>
