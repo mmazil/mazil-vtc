@@ -1,12 +1,11 @@
 ---
-# .cpanel.yml for automatic deployment to Namecheap cPanel
-
-# Branch to deploy
-branch: main
-
-# Tasks to run during deployment
 deployment:
   tasks:
-    - export DEPLOY_PATH=~/public_html
-    - echo "Deploying repository to $DEPLOY_PATH"
-    - cp -R * $DEPLOY_PATH
+    # Set the deployment path to your main website folder
+    - export DEPLOYPATH=/home/youronbi/public_html/
+
+    # Deploy the main index file
+    - /bin/cp index.html $DEPLOYPATH
+
+    # Deploy the assets directory
+    - /bin/cp -R assets $DEPLOYPATH
