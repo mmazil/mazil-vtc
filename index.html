@@ -519,6 +519,11 @@
           <div class="text-sm">Reliable private driver & tours</div>
         </div>
         <div>
+          <div class="font-semibold">Contact</div>
+          <div class="text-sm mt-2">+336 687 537 177</div>
+          <div class="text-sm mt-2">mmazil.vtc@gmail.com</div>
+        </div>
+        <div>
           <div class="font-semibold">Areas</div>
           <div class="text-sm mt-2">
             Paris, Charles de Gaulle (CDG) Airport, Orly Airport, Beauvais
@@ -541,6 +546,14 @@
         .addEventListener("submit", function (e) {
           e.preventDefault();
 
+          // Build number in parts to keep it out of the markup
+          const part1 = "33";
+          const part2 = "668";
+          const part3 = "753";
+          const part4 = "717";
+
+          const whatsappNumber = part1 + part2 + part3 + part4;
+
           const form = e.target;
 
           const message = `
@@ -557,7 +570,6 @@
             ${form.details.value}
                 `.trim();
 
-          const whatsappNumber = "33757445677"; // no + sign
           const url =
             "https://wa.me/" +
             whatsappNumber +
@@ -568,16 +580,8 @@
         });
 
       (function () {
-        // Build number in parts to keep it out of the markup
-        const part1 = "33";
-        const part2 = "757";
-        const part3 = "445";
-        const part4 = "677";
-
-        const number = part1 + part2 + part3 + part4;
-
         const message = "Hello! I would like to inquire about your services.";
-        const url = `https://wa.me/${number}?text=${encodeURIComponent(
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
           message
         )}`;
 

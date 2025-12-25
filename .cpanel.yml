@@ -1,0 +1,8 @@
+# Set the deployment path to your main website folder
+- export DEPLOYPATH=/home/youronbi/public_html/
+
+# Deploy the main index file
+- /bin/cp index.html $DEPLOYPATH
+
+# Deploy the assets directory
+- /bin/cp -R assets $DEPLOYPATH
